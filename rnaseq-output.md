@@ -1,1 +1,0 @@
-/processing_Data/bioinformatics/pipelines/rnaseq-nf/docs/output.md
