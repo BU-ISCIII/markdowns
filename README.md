@@ -1,4 +1,4 @@
-# ![BU-ISCIII/markdowns](docs/images/BU_ISCIII_logo.png)
+# ![BU-ISCIII/markdowns](BU_ISCIII_logo.png)
 
 # Introduction
 Repository with the list of markdowns developed by our group for the different analyses:
