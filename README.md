@@ -1,6 +1,6 @@
-# ![BU-ISCIII/markdowns](BU_ISCIII_logo.png)
+# Markdowns ![BU-ISCIII/markdowns](BU_ISCIII_logo.png =100x20)
 
-# Introduction
+## Introduction
 Repository with the list of markdowns developed by our group for the different analyses:
 
 * [RNA-seq nextflow](https://github.com/BU-ISCIII/rnaseq-nf/blob/master/docs/output.md)
