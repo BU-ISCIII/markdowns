@@ -1,4 +1,4 @@
-![logo](./BU_ISCIII_logo.png)
+![logo](./BU_ISCIII_logo.png =100x20)
 # Markdowns
 ## Introduction
 Repository with the list of markdowns developed by our group for the different analyses:
