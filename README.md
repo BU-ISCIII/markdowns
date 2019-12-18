@@ -1,4 +1,4 @@
-<img src="./BU_ISCIII_logo.png" alt="logo" style="width:100px;" align="right"/>
+<img src="./BU_ISCIII_logo.png" alt="logo" width="100" align="right"/>
 
 # Markdowns
 ## Introduction
