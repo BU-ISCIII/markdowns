@@ -1,4 +1,6 @@
-# Markdowns ![BU-ISCIII/markdowns](BU_ISCIII_logo.png =100x20)
+# Markdowns
+
+![BU-ISCIII/markdowns](BU_ISCIII_logo.png =100x20)
 
 ## Introduction
 Repository with the list of markdowns developed by our group for the different analyses:
