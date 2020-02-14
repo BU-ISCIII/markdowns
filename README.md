@@ -16,7 +16,7 @@ Repository with the list of markdowns developed by our group for the different a
 To convert the .md file into a html file you must run the following command:
 
 ```
-Rscript markdowntohtml.r <imput_markdown.md> <output_report.html>
+Rscript markdown_to_html.r <imput_markdown.md> <output_report.html>
 ```
 
 Once you have generated your html file, if you want to create a PDF file of the report you must install ['wkhtmltopdf'](https://wkhtmltopdf.org/) package. Then you should run the following command.
