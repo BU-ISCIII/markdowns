@@ -9,7 +9,7 @@
 * [Picard](#picard) v1.140 - Enrichment and alignment metrics.
 * [Bcftools](#bcftools) v1.9 - Variant calling and consensus genome
 * [SPADES](#spades) v3.7.1 - Viral genome assembly.
-* [QUAST](#quast) v4.1 - Assembly quality assessment.
+<!---** [QUAST](#quast) v4.1 - Assembly quality assessment.--->
 * [PlasmidID](#plasmidid) v.1.4.1 - Visualization of the alignment.
 
 Depending on the analysis, we will have some ANALYSIS_IDs. This ANALYSIS_IDs are going to be composed of the date of the analysis, the viral genome and the host genome (for example 20191112_GENOMEDENGUE_BUG and 20191112_GENOMEDENGUE_HUMAN) for the analysis of Dengue samples with Bug host and Human host. Inside these analysis you will find the folder corresponding to 04-mapping_host, 05_mapping_virus, 06-mapping_consensus, 07-assembly, 08-quast and 10-final_results, which are specific analysis for each host.
@@ -83,7 +83,7 @@ The resulting variant calling vcf for haploid genomes is indexed and then the co
 * `{sample_id}_{reference_virus_name}/{sample_id}_{reference_virus_name}.vcf.gz.csi`
   * Compressed format of the indexed variants file.
 * `{sample_id}_{reference_virus_name}/{sample_id}_{reference_virus_name}_consensus.fasta`
-  * Consensus viral genome file generated from adding the variants called before to the viral reference genome. These variants are only the majoritarian variants, inlcuding only SNPs and small indels. This file is also contained in the 10-final_results folder as {sample_id}_{reference_virus_name}_consensus.fasta.
+  * Consensus viral genome file generated from adding the variants called before to the viral reference genome. These variants are only the majoritarian variants, inlcuding only SNPs and small indels. This file is also contained in the 10-final_results folder as {sample_id}_{reference_virus_name}_consensus.fasta. This file is also contained in the ../RESULTS folder with the main results.
 
 ##Viral genome assembly
 Other approach we used to generate the consensus viral genome was assembling the reads that didn't mapped to the host genome.
@@ -104,7 +104,7 @@ In this section SAMtools was used to obtain the reads that didn't mapped with th
 * `{sample_id}/scaffolds.fasta`
   * Assembled scaffolds.
 
-### QUAST
+<!---*### QUAST
 [QUAST](http://bioinf.spbau.ru/quast) evaluates genome assemblies. We compared the reference genome with the contigs and scaffold assemblies. The html results can be opened with any browser (we recommend using Google Chrome).
 
 **Output directory: `08-quast`**
@@ -122,7 +122,7 @@ In this section SAMtools was used to obtain the reads that didn't mapped with th
     * N50: is the length for which the collection of all contigs of that length or longer covers at least half an assembly.
     * NG50: is the length for which the collection of all contigs of that length or longer covers at least half the reference genome. This metric is computed only if the reference genome is provided.
     * N75 and NG75: are defined similarly to N50 but with 75 % instead of 50 %.
-    * L50 (L75, LG50, LG75) is the number of contigs equal to or longer than N50 (N75, NG50, NG75). In other words, L50, for example, is the minimal number of contigs that cover half the assembly.
+    * L50 (L75, LG50, LG75) is the number of contigs equal to or longer than N50 (N75, NG50, NG75). In other words, L50, for example, is the minimal number of contigs that cover half the assembly.--->
 
 ### PlasmidID
 [PlasmidID](https://github.com/BU-ISCIII/plasmidID) was used to graphically represent the alignment of the reference genome with the assembly obtained with SPAdes. This helps to visualize the coverage of the reference genome in the assembly. To find more information about the output files go to: https://github.com/BU-ISCIII/plasmidID/wiki/Understanding-the-image:-track-by-track
