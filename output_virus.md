@@ -127,6 +127,8 @@ In this section SAMtools was used to obtain the reads that didn't mapped with th
 ### PlasmidID
 [PlasmidID](https://github.com/BU-ISCIII/plasmidID) was used to graphically represent the alignment of the reference genome with the assembly obtained with SPAdes. This helps to visualize the coverage of the reference genome in the assembly. To find more information about the output files go to: https://github.com/BU-ISCIII/plasmidID/wiki/Understanding-the-image:-track-by-track
 
-**Output directory: `10-final_results`**
+**Output directory: `../RESULTS/`**
 * `{sample_id}_{reference_viral_genome}.png`
   * PNG file with the visualization of the alignment between the assembled viral genome and the reference viral genome.
+* `{sample_id}_consensus.fasta`
+  * Fasta filte with the contigs that reconstruct the reference genome.
