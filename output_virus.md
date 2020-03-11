@@ -11,6 +11,7 @@
 * [SPADES](#spades) v3.7.1 - Viral genome assembly.
 <!---** [QUAST](#quast) v4.1 - Assembly quality assessment.--->
 * [PlasmidID](#plasmidid) v.1.4.1 - Visualization of the alignment.
+<!---*** [BLAST](#blast) v2.10.0 - Local alignment.--->
 
 Depending on the analysis, we will have some ANALYSIS_IDs. This ANALYSIS_IDs are going to be composed of the date of the analysis, the viral genome and the host genome (for example 20191112_GENOMEDENGUE_BUG and 20191112_GENOMEDENGUE_HUMAN) for the analysis of Dengue samples with Bug host and Human host. Inside these analysis you will find the folder corresponding to 04-mapping_host, 05_mapping_virus, 06-mapping_consensus, 07-assembly, 08-quast and 10-final_results, which are specific analysis for each host.
 
@@ -45,7 +46,7 @@ Parameters included for trimming are:
 
  **Note**:From now on, all the steps will be host specific.
 
-##Mapping
+## Mapping
 ### BWA
 [BWA](http://bio-bwa.sourceforge.net/) or Burrows-Wheeler Aligner, is designed for mapping low-divergent sequence reads against reference genomes. The result alignment files are further processed with [SAMtools](http://samtools.sourceforge.net/), sam format is converted to bam, sorted and an index .bai is generated.
 
@@ -70,9 +71,9 @@ We mapped the fastq file agains both reference host genome and reference viral g
 
 Picard documentation: [Picarddocs](https://broadinstitute.github.io/picard/command-line-overview.html)
 
-##Variant calling and consensus genome
+## Variant calling and consensus genome
 The first approach we used to generate the consensus viral genome was to call for variants between the mapped reads and the reference viral genome, and adding these variants to the reference viral genome.
-##Bcftools
+## Bcftools
 [Bcftools](http://samtools.github.io/bcftools/bcftools.html) mpileup command is used for generate a pileup for one the BAM files. In the pileup format each line represents a genomic position, consisting of chromosome name, 1-based coordinate, reference base, the number of reads covering the site, read bases, base qualities and alignment mapping qualities. Information on match, mismatch, indel, strand, mapping quality and start and end of a read are all encoded at the read base column.
 
 The resulting variant calling vcf for haploid genomes is indexed and then the consensus genome is created adding the variants to the reference viral genome. This consensus genome was obtained using the predominant variants of the mapping file.
@@ -85,9 +86,9 @@ The resulting variant calling vcf for haploid genomes is indexed and then the co
 * `{sample_id}_{reference_virus_name}/{sample_id}_{reference_virus_name}_consensus.fasta`
   * Consensus viral genome file generated from adding the variants called before to the viral reference genome. These variants are only the majoritarian variants, inlcuding only SNPs and small indels. This file is also contained in the 10-final_results folder as {sample_id}_{reference_virus_name}_consensus.fasta. This file is also contained in the ../RESULTS folder with the main results.
 
-##Viral genome assembly
+## Viral genome assembly
 Other approach we used to generate the consensus viral genome was assembling the reads that didn't mapped to the host genome.
-###SAMtools
+### SAMtools
 In this section SAMtools was used to obtain the reads that didn't mapped with the host genome. This reads where sorted and converted to fastq files.
 
 **Output directory: `07-assembly`**
@@ -132,3 +133,27 @@ In this section SAMtools was used to obtain the reads that didn't mapped with th
   * PNG file with the visualization of the alignment between the assembled viral genome and the reference viral genome.
 * `{sample_id}_consensus.fasta`
   * Fasta filte with the contigs that reconstruct the reference genome.
+
+## Custom Analysis
+### BLAST
+[BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) finds regions of similarity between biological sequences. The program compares nucleotide or protein sequences to sequence databases and calculates the statistical significance. We performed a nucleotide BLAST (blastn) through the web server, against the Nucleotide Collection database. The results are not shown. The analysis was performed both using a viral genomes database (10-blast_virus) and a bacterial genomes database (11-blast_bacteria).
+**Output directory: `10-blast_virus/ & 11-blast_bacteria`**
+* `{sample_id}_blast_filt_header.txt`: txt file with the parsed BLAST results. It contains the following columns:
+  * stitle: Subject title corresponds to the name of the genome that has a BLAST hit.
+  * qaccver: Corresponds to the sequence on the query (sample) fasta file that has a hit with stitle.
+  * saccver: Corresponds to the accession of stitle in the NCBI database.
+  * pident: Percentage of identity between the subject (reference) and the query (sample).
+  * length: length of the alignment.
+  * mismatch: # of mismatches in the alignment.
+  * gapopen: # of gaps that have been opened.
+  * qstart: nucleotide where the alignment starts in the query.
+  * qend: nucleotide where the alignment ends in the query.
+  * sstart: nucleotide where the alignment starts in the subject.
+  * send: nucleotide where the alignment ends in the subject.
+  * evalue: is the number of expected hits of similar quality (score) that could be found just by chance.
+  * bitscore: measures sequence similarity independent of query sequence length and database size and is normalized based on the rawpairwise alignment score.
+  * slen: Subject nucleotide length.
+  * qlen: Query nucleotide length.
+  * qcovs: % of query coverage.
+  * %cgAligned: % of contig aligned to the reference.
+  * %refCovered: %  of the reference that is covered.
