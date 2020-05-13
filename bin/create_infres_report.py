@@ -5,6 +5,7 @@ import re
 import os
 import argparse
 import datetime
+import logging
 
 logger = logging.getLogger()
 
