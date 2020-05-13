@@ -7,8 +7,8 @@ Repository with the list of markdowns developed by our group for the different a
 * [RNA-seq nextflow](https://github.com/BU-ISCIII/rnaseq-nf/blob/master/docs/output.md)
 * [Bacterial Assembly nextflow](https://github.com/BU-ISCIII/bacterial_assembly-nf/blob/master/docs/output.md)
 * [Low Frequency Variants nextflow](https://github.com/BU-ISCIII/panelLowFreq-nf/blob/master/doc/output.md)
-* [Viral Genome Assembly](https://github.com/BU-ISCIII/markdowns/blob/master/output_virus.md)
-* [Bacterial assembly + snippy + canSNP](https://github.com/BU-ISCIII/markdowns/blob/master/output_snippy_assembly_cansnp.md)
+* [Viral Genome Assembly](https://github.com/BU-ISCIII/markdowns/blob/master/reports/output_virus.md)
+* [Bacterial assembly + snippy + canSNP](https://github.com/BU-ISCIII/markdowns/blob/master/reports/output_snippy_assembly_cansnp.md)
 * [Exome pipeline](https://github.com/BU-ISCIII/exome_pipeline/blob/develop/doc/output.md)
 
 
