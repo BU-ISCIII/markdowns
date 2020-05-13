@@ -1,0 +1,37 @@
+{
+	"SERVICE_NUMBER":"SRVCNM200",
+	"SERVICE": {
+		"ID":"SRVCNM200_20200502_SARSCOV210_icasas_S",
+                "FILE_FORMAT":".fastq",
+                "SEQUENCING_CENTER":"GENOMIC_SEQ_UNIT",
+                "SEQUENCING_PLATFORM":"Illumina Mi-Seq",
+                "RUN_SPECIFICATIONS":"2x150",
+		"REQUEST_DATE":"02/05/2020",
+		"RESOLUTION_DATE":"02/05/2020",
+		"IN_PROGRESS_DATE":"02/04/2020",
+		"ESTIMATED_DELIVRY_DATE":"05/05/2020",
+		"DELIVRY_DATE":"07/05/2020"
+	},
+	"USER": {
+		"USERNAME":"icasas",
+		"FIRST_NAME":"Inmaculada",
+		"LAST_NAME":"Casas",
+		"POSITION":"Researcher",
+		"CENTER":"Centro Nacional de Microbiología",
+		"UNIT":"Virology",
+		"PHONE":"23415",
+		"EMAIL":"icasas@isciii.es"
+	},
+	"PROYECT": [
+		{"NAME":"MiSeq_CNM_163_20200424_ICasas","LIBRARY_QUIT":"TruSeq LT",
+		"SAMPLES": [
+			{"SAMPLE_NAME":"201565","READ_1":"201565_R1.fastq","READ_2":"201565_R2.fastq"},
+			{"SAMPLE_NAME":"202565","READ_1":"202565_R1.fastq","READ_2":"202565_R2.fastq"},
+			{"SAMPLE_NAME":"202567","READ_1":"202567_R1.fastq","READ_2":"202567_R2.fastq"},
+			{"SAMPLE_NAME":"203567","READ_1":"203567.fastq"}]},
+		{"NAME":"MiSeq_CNM_164_20200430_ICasas",
+		"SAMPLES": [
+			{"SAMPLE_NAME":"201565","READ_1":"201565_R1.fastq","READ_2":"201565_R2.fastq"},
+			{"SAMPLE_NAME":"202565","READ_1":"202565_R1.fastq","READ_2":"202565_R2.fastq"},
+			{"SAMPLE_NAME":"202567","READ_1":"202567_R1.fastq","READ_2":"202567_R2.fastq"}]}]
+}
