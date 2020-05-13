@@ -54,7 +54,7 @@ def main():
 
 
     #####################START PIPELINE################
-
+    logger.info("Starting infres report creation...")
     logger.info(args)
 
     #############FROM API###############################
