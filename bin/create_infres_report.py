@@ -56,7 +56,7 @@ def main():
 
     #####################START PIPELINE################
     logger.info("Starting infres report creation...")
-    #logger.info(args)
+    logger.info(args)
 
     #############FROM API###############################
     #url= 'https://flavia.isciii.es/api/'
@@ -64,7 +64,7 @@ def main():
     #variables = json.loads(response.text)
 
     ##################FROM TEXT########################
-    print(BASEPATH)
+    #print(BASEPATH)
     templateLoader = jinja2.FileSystemLoader(searchpath=BASEPATH)
     templateEnv = jinja2.Environment(loader=templateLoader)
     template = templateEnv.get_template(TEMPLATE_FILE)
