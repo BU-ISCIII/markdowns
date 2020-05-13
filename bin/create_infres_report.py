@@ -10,7 +10,8 @@ import logging
 logger = logging.getLogger()
 
 ###########JINJA2 READER#########
-TEMPLATE_FILE = "templates/buisciii-infres.j2"
+BASEPATH = os.path.dirname(os.path.realpath(__file__))
+TEMPLATE_FILE = BASEPATH + "/templates/buisciii-infres.j2"
 
 
 def get_arguments():
@@ -63,7 +64,7 @@ def main():
     #variables = json.loads(response.text)
 
     ##################FROM TEXT########################
-    templateLoader = jinja2.FileSystemLoader(searchpath="./")
+    templateLoader = jinja2.FileSystemLoader(searchpath=BASEPATH)
     templateEnv = jinja2.Environment(loader=templateLoader)
     template = templateEnv.get_template(TEMPLATE_FILE)
 
