@@ -24,8 +24,6 @@ def get_arguments():
         return arguments
 
 
-
-
 def main():
     # get arg
     args = get_arguments()
