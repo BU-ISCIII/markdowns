@@ -11,7 +11,7 @@ logger = logging.getLogger()
 
 ###########JINJA2 READER#########
 BASEPATH = os.path.dirname(os.path.realpath(__file__))
-TEMPLATE_FILE = BASEPATH + "/templates/buisciii-infres.j2"
+TEMPLATE_FILE = "templates/buisciii-infres.j2"
 
 
 def get_arguments():
@@ -56,7 +56,7 @@ def main():
 
     #####################START PIPELINE################
     logger.info("Starting infres report creation...")
-    logger.info(args)
+    #logger.info(args)
 
     #############FROM API###############################
     #url= 'https://flavia.isciii.es/api/'
@@ -64,6 +64,7 @@ def main():
     #variables = json.loads(response.text)
 
     ##################FROM TEXT########################
+    print(BASEPATH)
     templateLoader = jinja2.FileSystemLoader(searchpath=BASEPATH)
     templateEnv = jinja2.Environment(loader=templateLoader)
     template = templateEnv.get_template(TEMPLATE_FILE)
