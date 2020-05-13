@@ -1,3 +1,5 @@
+<img src="../assets/BU_ISCIII_logo.png" alt="logo" width="300" align="right"/>
+
 # Output description for SARS-Cov2 Nanopore Artic pipeline
 
 ## Pipeline overview
