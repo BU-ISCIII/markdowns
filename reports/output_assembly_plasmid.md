@@ -1,5 +1,5 @@
 <p>
-<img src="./logo_bu_isciii.png" alt="logo" width="200" align="left"/>
+<img src="../assets/BU_ISCIII_logo.png" alt="logo" width="200" align="left"/>
 </p>
 <br>
 <br>
