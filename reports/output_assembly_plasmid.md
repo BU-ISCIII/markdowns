@@ -15,6 +15,7 @@ Pipeline for bacterial assembly and annotation using nextflow.
 * [Quast](#quast) v4.1 - assemblies quality control
 * [Kmerfinder](#kmerfinder) v.3.1 - species and contamination determination.
 * [PlasmidID](#plasmidid) v.1.4.1 - Assembly report and visualization.
+* [ARIBA](#ariba) v.2.14.4 - Search resistance genes.
 
 **Note:**
 
@@ -97,18 +98,34 @@ Parameters included for trimming are:
 
 [PlasmidID](https://github.com/BU-ISCIII/plasmidID) was used to graphically represent the alignment of the reference genome relative to a given assembly. This helps to visualize the coverage of the reference genome in the assembly. To find more information about the output files refer to the [documentation](https://github.com/BU-ISCIII/plasmidID/wiki/Understanding-the-image:-track-by-track).
 
-**Output files:**
+**Output directory:** `05-plasmidID/NO_GROUP/`
 
-* `05-plasmidID/NO_GROUP/`
-  * `00_summary/FINAL_REPORT_NO_GROUP.tsv`: .tsv table with the  summary of the plasmids found in each sample and the times one plasmid appeared among all the samples.
-  * `{sample_id}/images/{sample_id}_{plasmid_id}.png`: PNG file with the visualization of the alignment between the viral assembly and the reference viral genome.
-  * `{sample_id}/data/`: Files used for drawing the circos images.
-  * `{sample_id}/database/`: Annotation files used for drawing the circos images.
-  * `{sample_id}/fasta_files`: Folder with fasta files that correspond to the selection of contigs/scaffolds required to reconstruct the reference genome generated in the `images/` folder.
-  * `{sample_id}/log/`: Log files.
+* `00_summary/FINAL_REPORT_NO_GROUP.tsv`: .tsv table with the  summary of the plasmids found in each sample and the times one plasmid appeared among all the samples.
+* `{sample_id}/images/{sample_id}_{plasmid_id}.png`: PNG file with the visualization of the alignment between the viral assembly and the reference viral genome.
+* `{sample_id}/data/`: Files used for drawing the circos images.
+* `{sample_id}/database/`: Annotation files used for drawing the circos images.
+* `{sample_id}/fasta_files`: Folder with fasta files that correspond to the selection of contigs/scaffolds required to reconstruct the reference genome generated in the `images/` folder.
+* `{sample_id}/log/`: Log files.
 
-> **NB:** The value of `<ASSEMBLER>` in the output directory name above is determined by the `--assemblers` parameter (Default: 'spades,metaspades,unicycler,minia').
 
+### ARIBA
+
+[ARIBA](https://github.com/sanger-pathogens/ariba/wiki) (6) was used to search for resistance genes and plasmids in different databases, for which it uses local assemblies.
+
+**Output directory:** `06-ariba/`
+
+* `run/{sample_id}`:
+  * `out.card1043-17run`: Results of the Card database.
+  * `out.megares1043-17run`: Results of the Megares database.
+  * `out.plasmidfinder1043-17run`: Results of the plasmidfinder database.
+  * `out.srst2_argannot1043-17run`: Results of the Arganot database.
+  * `out.vfdb_full1043-17run`: Results of the VFDB database.
+* `summary/`:
+  * `out.summarycard.csv`: Summary table of the Card database.
+  * `out.summarymegares.csv`: Summary table of the Megares database.
+  * `out.summaryplasmidfinder.csv`: Summary table of the plasmidfinder database.
+  * `out.summarysrst2_argannot.csv`: Summary table of the Argannot database.
+  * `out.summaryvfdb_full.csv`: Summary table of the VFDB database.
 
 ## Bibliography
 1. Bolger, A. M., Lohse, M., & Usadel, B. (2014). Trimmomatic: A flexible trimmer for Illumina Sequence Data. Bioinformatics, btu170.
@@ -116,3 +133,4 @@ Parameters included for trimming are:
 3. Wick RR, Judd LM, Gorrie CL, Holt KE. Unicycler: resolving bacterial genome assemblies from short and long sequencing reads. PLoS Comput Biol 2017.
 4. Seemann T. Prokka: rapid prokaryotic genome annotation. Bioinformatics 2014 Jul 15;30(14):2068-9.
 5. Alexey Gurevich, Vladislav Saveliev, Nikolay Vyahhi and Glenn Tesler. QUAST: quality assessment tool for genome assemblies, Bioinformatics (2013) 29 (8): 1072-1075.
+6. Martin Hunt, Alison E. Mather, Leonor Sánchez-Bus, Andrew J. Page, Julian Parkhill, Jacqueline A Keane, Simon R. Harris. ARIBA: rapid antimicrobial resistance genotyping directly from sequencing reads.  Microb Genom. 2017 Sep 4;3(10):e000131
