@@ -1,5 +1,5 @@
 <p>
-<img src="../../assets/images/BU_ISCIII_logo.png" alt="logo" width="200" align="left"/>
+<img src="../../../../markdowns/assets/BU_ISCIII_logo.png" alt="logo" width="200" align="left"/>
 </p>
 <br>
 <br>
@@ -33,7 +33,9 @@ Here we describe the information about the user requesting the service.
 Here we describe information about the project associated to the service:
 
 * Sequencing center: {{ SERVICE.SEQUENCING_CENTER }}
+{% if SERVICE.SEQUENCING_PLATFORM -%}
 * Sequencing platform: {{ SERVICE.SEQUENCING_PLATFORM }}
+{% endif -%}
 {% if SERVICE.RUN_SPECIFICATIONS -%}
 * Run specifications: {{ SERVICE.RUN_SPECIFICATIONS }}
 {% endif -%}
