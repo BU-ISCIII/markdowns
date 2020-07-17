@@ -13,7 +13,7 @@ logger = logging.getLogger()
 
 ###########JINJA2 READER#########
 BASEPATH = os.path.dirname(os.path.realpath(__file__))
-TEMPLATE_FILE = "templates/buisciii-infres_new.j2"
+TEMPLATE_FILE = "templates/buisciii-infres.j2"
 
 
 def get_arguments():
