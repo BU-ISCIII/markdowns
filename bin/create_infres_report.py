@@ -184,7 +184,6 @@ def main():
 
     ## Save json file
     if args.save_json:
-        print("lleag")
         with open(args.save_json + '/' + json_data['SERVICE_NUMBER'] + '_data_template.json', 'w') as json_file:
           json.dump(json_data, json_file, indent=2)
           json_file.write('\n')
