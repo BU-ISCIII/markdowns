@@ -155,6 +155,9 @@ def main():
                     # Load samples_id file and create a samples_id list
                     if args.samples:
                         samples = check_samples(sample,samples,sample_list)
+                    else:
+                        if sample not in samples: #We check if the samples is already in the sample list
+                            samples.append(sample)
                     project["SAMPLES"] = samples #We add the sample to the prohect
                 else: #if project does not exist, we have to add the project and the sample
                     project["PROJECT_NAME"] = row[21]
@@ -175,6 +178,9 @@ def main():
                 sample = str(row[20]) #We create the sample
                 if args.samples:
                     samples = check_samples(sample,samples,sample_list)
+                else:
+                    if sample not in samples: #We check if the samples is already in the sample list
+                        samples.append(sample)
                 project["SAMPLES"] = samples #We add the sample to the prohect
                 projects.append(project) #We add project to the run
                 run["PROJECTS"] = projects
