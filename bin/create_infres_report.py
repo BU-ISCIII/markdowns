@@ -67,9 +67,14 @@ def main():
     #####################START PIPELINE################
     logger.info("Starting infres report creation...")
     logger.info(args)
+    sample_list = []
     if args.samples:
         with open(args.samples) as sample_file:
-            sample_list = [line.rstrip() for line in sample_file]
+            samples_list = [line.rstrip() for line in sample_file]
+            for sample_name in samples_list:
+                sample_rename = sample_name.split("_",1)[0]
+                sample_list.append(sample_rename)
+
 
     ##################FROM TEXT########################
     #print(BASEPATH)
