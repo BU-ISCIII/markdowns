@@ -130,12 +130,22 @@ def main():
                 service["REQUEST_DATE"] = req_date
                 resol_date=str(row[6].year)+'/'+str(row[6].month)+'/'+str(row[6].day)
                 service["RESOLUTION_DATE"] = resol_date
-                prog_date=str(row[10].year)+'/'+str(row[10].month)+'/'+str(row[10].day)
-                service["IN_PROGRESS_DATE"] = prog_date
-                est_date=str(row[7].year)+'/'+str(row[7].month)+'/'+str(row[7].day)
-                service["ESTIMATED_DELIVERY_DATE"] = est_date
-                deliv_date=str(row[8].year)+'/'+str(row[8].month)+'/'+str(row[8].day)
-                service["DELIVERY_DATE"] = deliv_date
+                try:
+                    prog_date=str(row[10].year)+'/'+str(row[10].month)+'/'+str(row[10].day)
+                    service["IN_PROGRESS_DATE"] = prog_date
+                except:
+                    print("In pogress date is not defined")
+                try:
+                    est_date=str(row[7].year)+'/'+str(row[7].month)+'/'+str(row[7].day)
+                    service["ESTIMATED_DELIVERY_DATE"] = est_date
+                except:
+                    print("Estimated delivery date is not defined")
+                try:
+                    deliv_date=str(row[8].year)+'/'+str(row[8].month)+'/'+str(row[8].day)
+                    service["DELIVERY_DATE"] = deliv_date
+                except:
+                    print("Delivery date is not defined! Make the resolution!")
+                    deliv_date=str(row[8].year)+'/'+str(row[8].month)+'/'+str(row[8].day)
                 notes = row[11]
                 notes = notes.replace('\r', '')
                 notes = notes.replace('\n', ' ')
