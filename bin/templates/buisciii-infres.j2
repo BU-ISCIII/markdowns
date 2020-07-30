@@ -15,10 +15,10 @@ Here we describe the information about the service request:
 * Resolution date: {{ SERVICE.RESOLUTION_DATE }}
 {% if SERVICE.IN_PROGRESS_DATE -%}
 * Analysis starting date: {{ SERVICE.IN_PROGRESS_DATE }}
-{% endif %}
+{% endif -%}
 {% if SERVICE.ESTIMATED_DELIVERY_DATE -%}
 * Estimated delivery date: {{ SERVICE.ESTIMATED_DELIVERY_DATE }}
-{% endif %}
+{% endif -%}
 * Delivery date: {{ SERVICE.DELIVERY_DATE }}
 * Service notes: {{ SERVICE.SERVICE_NOTES }}
 
