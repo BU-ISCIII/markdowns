@@ -10,7 +10,7 @@
 * [Seqtk](#seqtk) v1.3 - Sequences conversions.
 * [Vsearch](#vsearch) v2.15.0 - Amplicon clustering, searching and dereplication.
 
-Depending on the analysis, we will have some ANALYSIS_IDs. This ANALYSIS_IDs are going to be composed of the date of the analysis, the viral genome and the host genome (for example 20191112_GENOMEDENGUE_BUG and 20191112_GENOMEDENGUE_HUMAN) for the analysis of Dengue samples with Bug host and Human host. Inside these analysis you will find the folder corresponding to 04-mapping_host, 05_mapping_virus, 06-mapping_consensus, 07-assembly, 08-quast and 10-final_results, which are specific analysis for each host.
+Depending on the analysis, we will have some ANALYSIS_IDs. This ANALYSIS_IDs are going to be composed of the date of the analysis and some tag that define the type of analysis done.
 
 ## Preprocessing
 ### FastQC
