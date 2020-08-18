@@ -57,7 +57,7 @@ We mapped the fastq file agains both reference host genome and reference viral g
   * Mapping stats summary.
 
 ## R1 and R2 reads merging
-## Flash
+### Flash
 [Flash](https://ccb.jhu.edu/software/FLASH/#:~:text=About%20FLASH&text=FLASH%20is%20designed%20to%20merge,to%20merge%20RNA%2Dseq%20data.) is a very fast and accurate software tool to merge paired-end reads from next-generation sequencing experiments. 
 
 **Output directory: `05-flash`**
@@ -73,7 +73,7 @@ We mapped the fastq file agains both reference host genome and reference viral g
 
 ## Clustering and dereplication
 
-## Seqtk
+### Seqtk
 Seqtk was used for converting fastq files into fasta files.
 
 **Output directory: `06-fastq2fasta`**
