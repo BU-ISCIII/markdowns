@@ -95,6 +95,16 @@ Seqtk was used for converting fastq files into fasta files.
 **Output directory: `08-dereplication`**
 * `{sample_id}_{cluster}_seqs_derep.fasta`
   * Fasta file with identical reads collapsed and count added to the header.
+  
+## QC stats
+### MultiQC
+[MultiQC](http://multiqc.info) is a visualization tool that generates a single HTML report summarizing all samples in your project. Most of the pipeline QC results are visualised in the report and further statistics are available in the report data directory.
+
+**Output directory: `99-stats`**
+* `multiqc/`  
+    * `multiqc_report.html`: a standalone HTML file that can be viewed in your web browser.
+    * `multiqc_data/`: directory containing parsed statistics from the different tools used in the pipeline.
+    * `multiqc_plots/`: directory containing static images from the report in various formats.
 
 ## Custom Analysis
 ### Output results generation: filtering and primer removal.
