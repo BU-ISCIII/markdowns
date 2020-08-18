@@ -23,6 +23,7 @@ def get_arguments():
     parser.add_argument('-s', '--service', type=str, required=False, help='Service ID to make the request to the database. REQUIRED if request is being done.')
     parser.add_argument('-m', '--samples', type=str, required=False, help='Path to the samples ID file to filter the samples in the request. REQUIRED if request to databse is being done.')
     parser.add_argument('-f', '--save_json', type=str, required=False, help='Path to save the output json file. REQUIRED if request to databse is being done.')
+    parser.add_argument('-np', '--no_project', type=str, required=False, help='When the service does not have any project associated, add this argument with TRUE.')
 
     arguments = parser.parse_args()
 
@@ -108,7 +109,10 @@ def main():
 
 
         # execute SQL query using execute() method.
-        query="SELECT service.serviceRequestNumber 'Service Number', resolution.resolutionNumber 'Resolution Number', resolution.resolutionFullNumber 'Service Name', service.serviceSeqCenter 'Sequencing Center', service.serviceRunSpecs 'Run Specifications', service.serviceCreatedOnDate 'Request Date', resolution.resolutionDate 'Resolution Date', resolution.resolutionEstimatedDate 'Estimated Delivery Date', delivery.deliveryDate 'Delivery Date', resolution.resolutionOnQueuedDate 'Queue Date', resolution.resolutionOnInProgressDate 'In progress Date', service.serviceNotes 'Notes', users.username 'Username', users.first_name 'First Name', users.last_name 'Last Name', profile.profilePosition 'Position', center.centerName 'Center', profile.profileArea 'Area', profile.profileExtension 'Phone Extension', users.email 'E-mail', sample.sampleName 'SampleName', project.projectName 'Project Name', runname.runName 'Run Name' FROM iSkyLIMS_drylab_service service, iSkyLIMS_drylab_service_serviceProjectNames bridge, iSkyLIMS_wetlab_projects project, iSkyLIMS_wetlab_runprocess runname, iSkyLIMS_wetlab_samplesinproject sample, iSkyLIMS_drylab_resolution resolution, iSkyLIMS_drylab_delivery delivery, auth_user users, django_utils_profile profile, django_utils_center center WHERE bridge.service_id = service.id and bridge.projects_id = project.id and sample.project_id_id = project.id and runname.id = project.runprocess_id_id and resolution.resolutionServiceID_id = service.id and delivery.deliveryResolutionID_id = resolution.id and service.serviceUserId_id = users.id and users.id = profile.profileUserID_id and profile.profileCenter_id = center.id and resolution.resolutionNumber='"+last_resolution+"';"
+        if args.no_project == "TRUE":
+            query="SELECT service.serviceRequestNumber 'Service Number', resolution.resolutionNumber 'Resolution Number', resolution.resolutionFullNumber 'Service Name', service.serviceSeqCenter 'Sequencing Center', service.serviceRunSpecs 'Run Specifications', service.serviceCreatedOnDate 'Request Date', resolution.resolutionDate 'Resolution Date', resolution.resolutionEstimatedDate 'Estimated Delivery Date', delivery.deliveryDate 'Delivery Date', resolution.resolutionOnQueuedDate 'Queue Date', resolution.resolutionOnInProgressDate 'In progress Date', service.serviceNotes 'Notes', users.username 'Username', users.first_name 'First Name', users.last_name 'Last Name', profile.profilePosition 'Position', center.centerName 'Center', profile.profileArea 'Area', profile.profileExtension 'Phone Extension', users.email 'E-mail' FROM iSkyLIMS_drylab_service service, iSkyLIMS_drylab_resolution resolution, iSkyLIMS_drylab_delivery delivery, auth_user users, django_utils_profile profile, django_utils_center center WHERE resolution.resolutionServiceID_id = service.id and delivery.deliveryResolutionID_id = resolution.id and service.serviceUserId_id = users.id and users.id = profile.profileUserID_id and profile.profileCenter_id = center.id and resolution.resolutionNumber='"+last_resolution+"';"
+        else:
+            query="SELECT service.serviceRequestNumber 'Service Number', resolution.resolutionNumber 'Resolution Number', resolution.resolutionFullNumber 'Service Name', service.serviceSeqCenter 'Sequencing Center', service.serviceRunSpecs 'Run Specifications', service.serviceCreatedOnDate 'Request Date', resolution.resolutionDate 'Resolution Date', resolution.resolutionEstimatedDate 'Estimated Delivery Date', delivery.deliveryDate 'Delivery Date', resolution.resolutionOnQueuedDate 'Queue Date', resolution.resolutionOnInProgressDate 'In progress Date', service.serviceNotes 'Notes', users.username 'Username', users.first_name 'First Name', users.last_name 'Last Name', profile.profilePosition 'Position', center.centerName 'Center', profile.profileArea 'Area', profile.profileExtension 'Phone Extension', users.email 'E-mail', sample.sampleName 'SampleName', project.projectName 'Project Name', runname.runName 'Run Name' FROM iSkyLIMS_drylab_service service, iSkyLIMS_drylab_service_serviceProjectNames bridge, iSkyLIMS_wetlab_projects project, iSkyLIMS_wetlab_runprocess runname, iSkyLIMS_wetlab_samplesinproject sample, iSkyLIMS_drylab_resolution resolution, iSkyLIMS_drylab_delivery delivery, auth_user users, django_utils_profile profile, django_utils_center center WHERE bridge.service_id = service.id and bridge.projects_id = project.id and sample.project_id_id = project.id and runname.id = project.runprocess_id_id and resolution.resolutionServiceID_id = service.id and delivery.deliveryResolutionID_id = resolution.id and service.serviceUserId_id = users.id and users.id = profile.profileUserID_id and profile.profileCenter_id = center.id and resolution.resolutionNumber='"+last_resolution+"';"
 
         cursor.execute(query)
         data = cursor.fetchall()
@@ -161,46 +165,51 @@ def main():
                     user["PHONE"] = row[18]
                 user["EMAIL"] = row[19]
                 json_data["USER"] = user
-            test_run=next((run for run in runs if run["RUN_NAME"] == row[22]), False) #Check if the run exist
-            if test_run != False: #if run already exist
-                project={}
-                test_poject=next((project for project in projects if project["PROJECT_NAME"] == row[21]), False) #Check if run exist but not project
-                if test_poject != False: #if project exist we just have to add the sample
+            if args.no_project == "TRUE":
+                print("NO PROJECT ASSCIATED! EDIT THE SAMPLES BY HAND!")
+                if args.samples:
+                    json_data["SAMPLES"] = sample_list
+            else:
+                test_run=next((run for run in runs if run["RUN_NAME"] == row[22]), False) #Check if the run exist
+                if test_run != False: #if run already exist
+                    project={}
+                    test_poject=next((project for project in projects if project["PROJECT_NAME"] == row[21]), False) #Check if run exist but not project
+                    if test_poject != False: #if project exist we just have to add the sample
+                        sample = str(row[20]) #We create the sample
+                        # Load samples_id file and create a samples_id list
+                        if args.samples:
+                            samples = check_samples(sample,samples,sample_list)
+                        else:
+                            if sample not in samples: #We check if the samples is already in the sample list
+                                samples.append(sample)
+                        project["SAMPLES"] = samples #We add the sample to the prohect
+                    else: #if project does not exist, we have to add the project and the sample
+                        project["PROJECT_NAME"] = row[21]
+                        projects.append(project)
+                        run["PROJECTS"] = projects
+                        sample = str(row[20]) #We create the sample
+                        # Load samples_id file and create a samples_id list
+                        if args.samples:
+                            samples = check_samples(sample,samples,sample_list)
+                        project["SAMPLES"] = samples #We add the sample to the prohect
+                else: #if run does not exist, we have to create the run, the project and the sample
+                    projects=[]
+                    samples=[]
+                    run = {}
+                    project={}
+                    run["RUN_NAME"] = row[22] # We create RUN_NAME
+                    project["PROJECT_NAME"] = row[21] #We create the project
                     sample = str(row[20]) #We create the sample
-                    # Load samples_id file and create a samples_id list
                     if args.samples:
                         samples = check_samples(sample,samples,sample_list)
                     else:
                         if sample not in samples: #We check if the samples is already in the sample list
                             samples.append(sample)
                     project["SAMPLES"] = samples #We add the sample to the prohect
-                else: #if project does not exist, we have to add the project and the sample
-                    project["PROJECT_NAME"] = row[21]
-                    projects.append(project)
+                    projects.append(project) #We add project to the run
                     run["PROJECTS"] = projects
-                    sample = str(row[20]) #We create the sample
-                    # Load samples_id file and create a samples_id list
-                    if args.samples:
-                        samples = check_samples(sample,samples,sample_list)
-                    project["SAMPLES"] = samples #We add the sample to the prohect
-            else: #if run does not exist, we have to create the run, the project and the sample
-                projects=[]
-                samples=[]
-                run = {}
-                project={}
-                run["RUN_NAME"] = row[22] # We create RUN_NAME
-                project["PROJECT_NAME"] = row[21] #We create the project
-                sample = str(row[20]) #We create the sample
-                if args.samples:
-                    samples = check_samples(sample,samples,sample_list)
-                else:
-                    if sample not in samples: #We check if the samples is already in the sample list
-                        samples.append(sample)
-                project["SAMPLES"] = samples #We add the sample to the prohect
-                projects.append(project) #We add project to the run
-                run["PROJECTS"] = projects
-                runs.append(run) #We add run to run list
-            json_data["RUNS"] = runs
+                    runs.append(run) #We add run to run list
+                json_data["RUNS"] = runs
         db.close() # disconnect from server
 
     ## Save json file
