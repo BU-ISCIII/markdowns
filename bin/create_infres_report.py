@@ -97,7 +97,7 @@ def main():
 
         #############FROM API###############################
         # Open database connection
-        db = pymysql.connect("flavia.isciii.es","django","django77","iSkyLIMS" )
+        db = pymysql.connect("parmenides.isciii.es","iskylimsro","kd9jK3J.ZDwukCGgiHbU","iSkyLIMS" )
 
         # prepare a cursor object using cursor() method
         cursor = db.cursor()
