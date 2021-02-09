@@ -47,3 +47,10 @@ Exomiser(https://www.sanger.ac.uk/tool/exomiser/) annotates and priorizates vari
 * `{samples_id}_exomiser_XR.[genes,variants].[tsv,vcf]`
   * variants/genes for Sex-associated Recesive inheritance model annotated in tsv/vcf format.
 
+## Quality control stats.
+### Picard HsMetrics
+ [Picard](https://gatk.broadinstitute.org/hc/en-us/articles/360036856051-CollectHsMetrics-Picard-) is used for coverage metrics calculation.
+
+**Output directory: `99-stats`**
+* `hs_metrics_all.csv`
+  * Mean depth of coverage, capture enrichment and coverage stats.
