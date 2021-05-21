@@ -47,6 +47,21 @@ Exomiser(https://www.sanger.ac.uk/tool/exomiser/) annotates and priorizates vari
 * `{samples_id}_exomiser_XR.[genes,variants].[tsv,vcf]`
   * variants/genes for Sex-associated Recesive inheritance model annotated in tsv/vcf format.
 
+### VEP
+[VEP (Variant Effect Predictor)](https://www.ensembl.org/info/docs/tools/vep/index.html) determines the effect of your variants (SNPs, insertions, deletions, CNVs or structural variants) on genes, transcripts, and protein sequence, as well as regulatory regions.
+
+**Output directory: `03-annotation/vep`**
+* `{samples_id}_variants_fil_mod.vcf`
+* `{samples_id}_variants.table`
+* `{samples_id}_vep_annot.vcf`
+* `{samples_id}_vep_annot.vcf_summary.html`
+* `{samples_id}_vep_annot_head.txt`
+* `vep_dbNSFP.txt`
+* `variants_annot_all.tab`
+* __`{samples_id}_variants_annot_highModerate.xlsx`__
+  * Variants filtrated by high and moderate effect
+
+
 ## Quality control stats.
 ### Picard HsMetrics
  [Picard](https://gatk.broadinstitute.org/hc/en-us/articles/360036856051-CollectHsMetrics-Picard-) is used for coverage metrics calculation.
