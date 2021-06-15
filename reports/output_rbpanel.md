@@ -107,3 +107,10 @@ After the trimming steps, FastQC for new quality control is performed.
   * Mapping metrics for each sample.
 * `hsMetrics_all.out`
   * Metrics for all the samples.
+
+### MultiQC
+[MultiQC](http://multiqc.info) is a visualization tool that generates a single HTML report summarizing all samples in your project. Most of the pipeline QC results are visualised in the report and further statistics are available in the report data directory.
+
+**Output directory: `99-stats/`**
+* `multiqc_report.html`: a standalone HTML file that can be viewed in your web browser.
+* `multiqc_data/`: directory containing parsed statistics from the different tools used in the pipeline.
