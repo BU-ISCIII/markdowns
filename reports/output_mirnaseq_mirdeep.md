@@ -53,8 +53,8 @@ Parameters included for trimming are:
   - `expression_output.html`: gives an overview of all miRNAs and novel the input data
   - `pdfs_output`: contains for each miRNA and novel a pdf file showing its signature and structure.
 
-
-## DESeq2
+## Differential expression
+### DESeq2
 Differential expression analysis with <a name="deseq2">DESeq2</a>. [DESeq2](https://bioconductor.org/packages/release/bioc/manuals/DESeq2/man/DESeq2.pdf) is a Bioconductor package for R used for RNA-seq data analysis. The script included in the pipeline uses DESeq2 to normalize read counts and create a heatmap / dendrogram showing pairwise euclidean distance (sample similarity). It also creates other plots to evaluate the sample dispersion. It also provides PCA plots to evaluate sample grouping.
 
 **Output directory `07-DESeq2`:**
